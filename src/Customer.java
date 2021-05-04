@@ -1,29 +1,42 @@
-public abstract class Customer {
-    private String Name;
-    private String PhoneNumber;
-    private String ticketNum;
+package edu.sdccd.cisc191;
 
-    public String getName() {
-        return Name;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    private String firstName;
+    private String lastName;
+
+    protected Customer() {}
+
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    @Override
+    public String toString() {
+        return String.format(
+                "Customer[id=%d, firstName='%s', lastName='%s']",
+                id, firstName, lastName);
     }
 
-    public String getPhoneNumber() {
-        return PhoneNumber;
+    public Long getId() {
+        return id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getTicketNum() {
-        return ticketNum;
-    }
-
-    public void setTicketNum(String ticketNum) {
-        this.ticketNum = ticketNum;
+    public String getLastName() {
+        return lastName;
     }
 }
